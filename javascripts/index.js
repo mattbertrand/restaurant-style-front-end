@@ -1,5 +1,5 @@
 function main() {
-    document.getElementById("main")
+    return document.getElementById("main")
 }
 
 function resetMain() {
@@ -22,3 +22,12 @@ function formTemplate() {
         </form>
     `
 }
+
+function renderForm() {
+    resetMain()
+    main().innerHTML = formTemplate()
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    renderForm()
+})

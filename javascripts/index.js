@@ -1,3 +1,10 @@
+let restaurants = [
+    {name: "Crave", city: "Novato"},
+    {name: "Barrel House Tavern", city: "Sausalito"},
+    {name: "Buckeye Roadhouse", city: "Mill Valley"},
+    {name: "Brewster", city: "Petaluma"}
+]
+
 function main() {
     return document.getElementById("main")
 }
@@ -8,6 +15,10 @@ function nameInput() {
 
 function cityInput() {
     return document.getElementById("city")
+}
+
+function form() {
+    return document.getElementById("form")
 }
 
 function resetInputs() {
@@ -36,11 +47,41 @@ function formTemplate() {
     `
 }
 
+function restaurantsTemplate() {
+    return `
+    <h3>List of Restaurants</h3>
+       <div id="restaurants">
+           <div>
+               <h3>Name:</h3>
+               <h4>City:</h4>
+           </div>
+       </div>
+    `
+}
+
 function renderForm() {
     resetMain()
     main().innerHTML = formTemplate()
+    form().addEventListener("submit", submitForm)
+}
+
+function renderRestaurants() {
+    resetMain()
+    main().innerHTML = restaurantsTemplate()
+}
+
+function submitForm(e) {
+    e.preventDefault()
+
+    restaurants.push({
+        name: nameInput().value,
+        city: cityInput().value
+    })
+
+    resetInputs()
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    renderForm()
+    // renderForm()
+    renderRestaurants()
 })

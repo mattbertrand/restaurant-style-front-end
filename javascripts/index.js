@@ -2,6 +2,19 @@ function main() {
     return document.getElementById("main")
 }
 
+function nameInput() {
+    return document.getElementById("name")
+}
+
+function cityInput() {
+    return document.getElementById("city")
+}
+
+function resetInputs() {
+    nameInput().innerHTML = ""
+    cityInput().innerHTML = ""
+}
+
 function resetMain() {
     main().innerHTML = ""
 }

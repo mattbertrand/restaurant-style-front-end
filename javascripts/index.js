@@ -16,6 +16,14 @@ function form() {
     return document.getElementById("form")
 }
 
+function formLink() {
+    return document.getElementById("form-link")
+}
+
+function restaurantsLink() {
+    return document.getElementById("restaurants-link")
+}
+
 function resetInputs() {
     nameInput().innerHTML = ""
     cityInput().innerHTML = ""
@@ -90,7 +98,25 @@ function submitForm(e) {
     renderRestaurants()
 }
 
+function formLinkEvent() {
+    formLink().addEventListener("click", function(e) {
+        e.preventDefault()
+
+        renderForm()
+    })
+}
+
+function restaurantsLinkEvent() {
+    restaurantsLink().addEventListener("click", function(e) {
+        e.preventDefault()
+
+        renderRestaurants()
+    })
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     renderForm()
+    formLinkEvent()
+    restaurantsLinkEvent()
     // renderRestaurants()
 })

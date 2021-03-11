@@ -50,13 +50,23 @@ function formTemplate() {
 function restaurantsTemplate() {
     return `
     <h3>List of Restaurants</h3>
-       <div id="restaurants">
-           <div>
-               <h3>Name:</h3>
-               <h4>City:</h4>
-           </div>
-       </div>
+       <div id="restaurants"></div>
     `
+}
+
+function restaurantTemplate(restaurant) {
+    let div = document.createElement("div")
+    let h3 = document.createElement("h3")
+    let h4 = document.createElement("h4")
+    let restaurantsDiv = document.getElementById("restaurants")
+
+    h3.innerText = restaurant.name
+    h4.innerText = restaurant.city
+
+    div.appendChild(h3)
+    div.appendChild(h4)
+
+    restaurantsDiv,appendChild(div)
 }
 
 function renderForm() {

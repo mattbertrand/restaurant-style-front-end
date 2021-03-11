@@ -1,9 +1,4 @@
-let restaurants = [
-    {name: "Crave", city: "Novato"},
-    {name: "Barrel House Tavern", city: "Sausalito"},
-    {name: "Buckeye Roadhouse", city: "Mill Valley"},
-    {name: "Brewster", city: "Petaluma"}
-]
+let restaurants = []
 
 function main() {
     return document.getElementById("main")
@@ -92,10 +87,10 @@ function submitForm(e) {
         city: cityInput().value
     })
 
-    resetInputs()
+    renderRestaurants()
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // renderForm()
-    renderRestaurants()
+    renderForm()
+    // renderRestaurants()
 })

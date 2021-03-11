@@ -54,7 +54,7 @@ function restaurantsTemplate() {
     `
 }
 
-function restaurantTemplate(restaurant) {
+function renderRestaurant(restaurant) {
     let div = document.createElement("div")
     let h3 = document.createElement("h3")
     let h4 = document.createElement("h4")
@@ -66,7 +66,7 @@ function restaurantTemplate(restaurant) {
     div.appendChild(h3)
     div.appendChild(h4)
 
-    restaurantsDiv,appendChild(div)
+    restaurantsDiv.appendChild(div)
 }
 
 function renderForm() {
@@ -78,6 +78,10 @@ function renderForm() {
 function renderRestaurants() {
     resetMain()
     main().innerHTML = restaurantsTemplate()
+
+    restaurants.forEach(function(restaurant) {
+        renderRestaurant(restaurant)
+    })
 }
 
 function submitForm(e) {

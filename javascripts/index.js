@@ -1,4 +1,5 @@
 let restaurants = []
+const baseUrl = 'http://localhost:3000'
 
 function main() {
     return document.getElementById("main")
@@ -22,6 +23,18 @@ function formLink() {
 
 function restaurantsLink() {
     return document.getElementById("restaurants-link")
+}
+
+function getRestaurants() {
+    fetch(baseUrl + '/restaurants')
+    .then(function(resp) {
+        return resp.json()
+    })
+    .then(function(data) {
+        restaurants = data
+    })
+
+    renderRestaurants()
 }
 
 function resetInputs() {
@@ -115,6 +128,7 @@ function restaurantsLinkEvent() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    getRestaurants()
     renderForm()
     formLinkEvent()
     restaurantsLinkEvent()

@@ -22,9 +22,16 @@ class Restaurant {
         collection.forEach(attr => Restaurant.create(attr))
     }
 
+    static restaurantsTemplate() {
+        return `
+        <h3>List of Restaurants</h3>
+           <div id="restaurants"></div>
+        `
+    }
+    
     static renderRestaurants() {
         resetMain()
-        main().innerHTML = restaurantsTemplate()
+        main().innerHTML = Restaurant.restaurantsTemplate()
     
         Restaurant.all.forEach(function(restaurant) {
             renderRestaurant(restaurant)

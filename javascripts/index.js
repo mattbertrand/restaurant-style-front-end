@@ -58,13 +58,6 @@ function editFormTemplate(restaurant) {
     `
 }
 
-function restaurantsTemplate() {
-    return `
-    <h3>List of Restaurants</h3>
-       <div id="restaurants"></div>
-    `
-}
-
 function renderRestaurant(restaurant) {
     let div = document.createElement("div")
     let h3 = document.createElement("h3")

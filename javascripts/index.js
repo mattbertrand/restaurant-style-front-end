@@ -58,39 +58,6 @@ function editFormTemplate(restaurant) {
     `
 }
 
-function renderRestaurant(restaurant) {
-    let div = document.createElement("div")
-    let h3 = document.createElement("h3")
-    let h4 = document.createElement("h4")
-    let showStyle = document.createElement('p')
-    let editLink = document.createElement("a")
-    let deleteLink = document.createElement("a")
-    let restaurantsDiv = document.getElementById("restaurants")
-    
-    editLink.dataset.id = restaurant.id
-    editLink.setAttribute("href", "#")
-    editLink.innerText = "Edit"
-    
-    deleteLink.dataset.id = restaurant.id
-    deleteLink.setAttribute("href", "#")
-    deleteLink.innerText = "Delete"
-
-    editLink.addEventListener("click", editRestaurant)
-    deleteLink.addEventListener("click", deleteRestaurant)
-
-    h3.innerText = restaurant.name
-    h4.innerText = restaurant.city
-    showStyle.innerText = `Style: ${restaurant.style.title}`
-
-    div.appendChild(h3)
-    div.appendChild(h4)
-    div.appendChild(showStyle)
-    div.appendChild(editLink)
-    div.appendChild(deleteLink)
-
-    restaurantsDiv.appendChild(div)
-}
-
 async function deleteRestaurant(e) {
     e.preventDefault()
 

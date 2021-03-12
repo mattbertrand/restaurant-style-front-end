@@ -1,11 +1,10 @@
-
-
 async function getRestaurants() {
 
     const resp = await fetch(baseUrl + '/restaurants')
     const data = await resp.json()
     
     restaurants = data
+    Restaurant.createFromCollection(attr)
     
     renderRestaurants()
 }

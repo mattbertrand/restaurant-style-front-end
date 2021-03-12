@@ -166,7 +166,7 @@ class Restaurant {
     
         const id = e.target.dataset.id
         
-        Api.patch("/restaurants", + id, strongParams)
+        Api.patch("/restaurants/" + id, strongParams)
             .then(function(data) {
                 let r = Restaurant.all.find((r) => r.id == data.id)
                 
@@ -191,11 +191,7 @@ class Restaurant {
     
         let id = e.target.dataset.id
     
-        const resp = await fetch(Api.baseUrl + '/restaurants/' + id, {
-            method: "DELETE"
-        })
-    
-        const data = await resp.json()
+        const data = await Api.delete('/restaurants/' + id)
         
         Restaurant.all = Restaurant.all.filter(function(restaurant) {
             return restaurant.id !== data.id

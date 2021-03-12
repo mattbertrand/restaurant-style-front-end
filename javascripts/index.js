@@ -14,7 +14,7 @@ function cityInput() {
 }
 
 function styleInput() {
-    document.getElementById("style")
+    return document.getElementById("style")
 }
 
 function form() {
@@ -80,6 +80,10 @@ function editFormTemplate(restaurant) {
             <div class="input-field">
                 <label for="city">City</label>
                 <input type="text" name="city" id="city" value="${restaurant.city}">
+            </div>
+            <div class="input-field">
+                <label for="style">Style</label>
+                <input type="text" name="style" id="style" value="${restaurant.style.title}">
             </div>
             <input type="submit" value="Edit Restaurant">
         </form>
@@ -174,7 +178,8 @@ function submitEditForm(e) {
     let strongParams = {
         restaurant: {
             name: nameInput().value,
-            city: cityInput().value
+            city: cityInput().value, 
+            style_attributes: styleInput().value
         }
     }
 

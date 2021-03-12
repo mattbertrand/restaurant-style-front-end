@@ -81,6 +81,8 @@ function renderRestaurant(restaurant) {
     deleteLink.setAttribute("href", "#")
     deleteLink.innerText = "Delete"
 
+    deleteLink.addEventListener("click", deleteRestaurant)
+
     h3.innerText = restaurant.name
     h4.innerText = restaurant.city
 
@@ -89,6 +91,27 @@ function renderRestaurant(restaurant) {
     div.appendChild(deleteLink)
 
     restaurantsDiv.appendChild(div)
+}
+
+function deleteRestaurant(e) {
+    e.preventDefault()
+
+    let id = e.target.dataset.id
+
+    fetch(baseUrl + '/restaurants/' + id, {
+        method: "DELETE"
+    })
+    .then(function(resp) {
+        return resp.json()
+    })
+    .then(function(data) {
+        
+        restaurants = restaurants.filter(function(restaurant) {
+            return restaurant.id !== data.id
+        })
+        renderRestaurants()
+    })
+
 }
 
 function renderForm() {

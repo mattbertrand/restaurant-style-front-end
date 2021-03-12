@@ -219,7 +219,8 @@ function submitForm(e) {
     let strongParams = {
         restaurant: {
             name: nameInput().value,
-            city: cityInput().value
+            city: cityInput().value,
+            style_attributes: styleInput().value
         }
     }
 

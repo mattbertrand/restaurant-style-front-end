@@ -3,10 +3,8 @@ async function getRestaurants() {
     const resp = await fetch(baseUrl + '/restaurants')
     const data = await resp.json()
     
-    restaurants = data
-    Restaurant.createFromCollection(attr)
-    
-    renderRestaurants()
+    Restaurant.createFromCollection(data)
+    Restaurant.renderRestaurants()
 }
 
 function resetInputs() {
@@ -111,11 +109,11 @@ async function deleteRestaurant(e) {
 
     const data = await resp.json()
     
-    restaurants = restaurants.filter(function(restaurant) {
+    Restaurant.all = Restaurant.all.filter(function(restaurant) {
         return restaurant.id !== data.id
     })
     
-    renderRestaurants()
+    Restaurant.renderRestaurants()
 }
 
 function editRestaurant(e) {
@@ -123,7 +121,7 @@ function editRestaurant(e) {
 
     const id = e.target.dataset.id
 
-    const restaurant = restaurants.find(function(restaurant) {
+    const restaurant = Restaurant.all.find(function(restaurant) {
         return restaurant.id == id
     })
 
@@ -167,24 +165,15 @@ function submitEditForm(e) {
         return resp.json()
     })
     .then(function(restaurant) {
-        let r = restaurants.find(function(r) {
+        let r = Restaurant.all.find(function(r) {
             return r.id == restaurant.id
         })
         
-        let idx = restaurants.indexOf(r)
+        let idx = Restaurant.all.indexOf(r)
 
-        restaurants[idx] = restaurant
+        Restaurant.all[idx] = restaurant
 
-        renderRestaurants()
-    })
-}
-
-function renderRestaurants() {
-    resetMain()
-    main().innerHTML = restaurantsTemplate()
-
-    restaurants.forEach(function(restaurant) {
-        renderRestaurant(restaurant)
+        Restaurant.renderRestaurants()
     })
 }
 
@@ -211,8 +200,8 @@ function submitForm(e) {
         return resp.json()
     })
     .then(function(restaurant) {
-        restaurants.push(restaurant)
-        renderRestaurants()
+        Restaurant.all.push(restaurant)
+        Restaurant.renderRestaurants()
     })
 
 }
@@ -229,7 +218,7 @@ function restaurantsLinkEvent() {
     restaurantsLink().addEventListener("click", function(e) {
         e.preventDefault()
 
-        renderRestaurants()
+        Restaurant.renderRestaurants()
     })
 }
 

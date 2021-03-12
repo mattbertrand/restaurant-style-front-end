@@ -21,4 +21,13 @@ class Restaurant {
     static createFromCollection(collection) {
         collection.forEach(attr => Restaurant.create(attr))
     }
+
+    static renderRestaurants() {
+        resetMain()
+        main().innerHTML = restaurantsTemplate()
+    
+        Restaurant.all.forEach(function(restaurant) {
+            renderRestaurant(restaurant)
+        })
+    }
 }

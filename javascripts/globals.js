@@ -1,5 +1,3 @@
-let restaurants = []
-
 const baseUrl = 'http://localhost:3000'
 
 const main = () => document.getElementById("main")

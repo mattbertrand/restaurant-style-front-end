@@ -15,6 +15,14 @@ class Restaurant {
         let h3 = document.createElement("h3")
         let h4 = document.createElement("h4")
         let showStyle = document.createElement('p')
+        
+        let pImage = document.createElement('img')
+        pImage.src = this.image
+        pImage.setAttribute('width', 325)
+        pImage.setAttribute('height', 250)
+
+        let pUrl = document.createElement('a')
+        pUrl.setAttribute('href', `${this.url}`)
         let editLink = document.createElement("a")
         let deleteLink = document.createElement("a")
         let restaurantsDiv = document.getElementById("restaurants")
@@ -32,10 +40,14 @@ class Restaurant {
     
         h3.innerText = this.name
         h4.innerText = this.city
+        pImage.innerText = this.image
+        pUrl.innerText = this.url
         showStyle.innerText = `Style: ${this.style.title}`
     
         div.appendChild(h3)
         div.appendChild(h4)
+        div.appendChild(pImage)
+        div.appendChild(pUrl)
         div.appendChild(showStyle)
         div.appendChild(editLink)
         div.appendChild(deleteLink)

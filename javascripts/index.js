@@ -1,7 +1,6 @@
 async function getRestaurants() {
 
-    const resp = await fetch(baseUrl + '/restaurants')
-    const data = await resp.json()
+    const data = await Api.get("/restaurants")
     
     Restaurant.createFromCollection(data)
     Restaurant.renderRestaurants()

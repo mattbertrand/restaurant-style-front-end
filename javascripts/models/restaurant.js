@@ -146,7 +146,7 @@ class Restaurant {
             }
         }
     
-        fetch(baseUrl + '/restaurants', {
+        fetch(Api.baseUrl + '/restaurants', {
             body: JSON.stringify(strongParams),
             headers: {
                 "Accept": "application/json",
@@ -177,7 +177,7 @@ class Restaurant {
     
         const id = e.target.dataset.id
         
-        fetch(baseUrl + '/restaurants/' + id, {
+        fetch(Api.baseUrl + '/restaurants/' + id, {
             method: "PATCH",
             headers: {
                 "Accept": "application/json",
@@ -206,7 +206,7 @@ class Restaurant {
     
         let id = e.target.dataset.id
     
-        const resp = await fetch(baseUrl + '/restaurants/' + id, {
+        const resp = await fetch(Api.baseUrl + '/restaurants/' + id, {
             method: "DELETE"
         })
     

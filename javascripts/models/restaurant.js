@@ -166,28 +166,16 @@ class Restaurant {
     
         const id = e.target.dataset.id
         
-        fetch(Api.baseUrl + '/restaurants/' + id, {
-            method: "PATCH",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(strongParams)
-        })
-        .then(function(resp) {
-            return resp.json()
-        })
-        .then(function(data) {
-            let r = Restaurant.all.find(function(r) {
-                return r.id == data.id
+        Api.patch("/restaurants", + id, strongParams)
+            .then(function(data) {
+                let r = Restaurant.all.find((r) => r.id == data.id)
+                
+                let idx = Restaurant.all.indexOf(r)
+        
+                Restaurant.all[idx] = new Restaurant(data)
+        
+                Restaurant.renderRestaurants()
             })
-            
-            let idx = Restaurant.all.indexOf(r)
-    
-            Restaurant.all[idx] = new Restaurant(data)
-    
-            Restaurant.renderRestaurants()
-        })
     }
 
     static async getRestaurants() {

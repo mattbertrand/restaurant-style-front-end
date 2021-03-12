@@ -56,6 +56,10 @@ function formTemplate() {
                 <label for="city">City</label>
                 <input type="text" name="city" id="city">
             </div>
+            <div class="input-field">
+                <label for="style">Style</label>
+                <input type="text" name="style" id="style">
+            </div>
             <input type="submit" value="Add Restaurant">
         </form>
     `

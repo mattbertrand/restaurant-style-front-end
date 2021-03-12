@@ -16,4 +16,16 @@ class Api {
 
         return data
     }
+
+    static async post(path, data) {
+        let resp = await fetch(Api.baseUrl + path, {
+            method: "POST",
+            headers: Api.headers,
+            body: JSON.stringify(data)
+        })
+
+        let data = await resp.json()
+
+        return data
+    }
 }

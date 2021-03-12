@@ -146,22 +146,11 @@ class Restaurant {
             }
         }
     
-        fetch(Api.baseUrl + '/restaurants', {
-            body: JSON.stringify(strongParams),
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            method: "POST"
-        })
-        .then(function(resp) {
-            return resp.json()
-        })
-        .then(function(data) {
-            Restaurant.create(data)
-            Restaurant.renderRestaurants()
-        })
-    
+        Api.post('/restaurants', strongParams)
+            .then(function(data) {
+                Restaurant.create(data)
+                Restaurant.renderRestaurants()
+            })
     }
 
     static submitEditForm(e) {
@@ -199,6 +188,14 @@ class Restaurant {
     
             Restaurant.renderRestaurants()
         })
+    }
+
+    static async getRestaurants() {
+
+        const data = await Api.get("/restaurants")
+        
+        Restaurant.createFromCollection(data)
+        Restaurant.renderRestaurants()
     }
 
     static async deleteRestaurant(e) {

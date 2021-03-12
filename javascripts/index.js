@@ -1,11 +1,3 @@
-async function getRestaurants() {
-
-    const data = await Api.get("/restaurants")
-    
-    Restaurant.createFromCollection(data)
-    Restaurant.renderRestaurants()
-}
-
 function resetInputs() {
     nameInput().innerHTML = ""
     cityInput().innerHTML = ""

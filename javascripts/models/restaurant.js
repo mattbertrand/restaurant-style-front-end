@@ -26,7 +26,7 @@ class Restaurant {
         deleteLink.innerText = "Delete"
     
         editLink.addEventListener("click", Restaurant.editRestaurant)
-        deleteLink.addEventListener("click", deleteRestaurant)
+        deleteLink.addEventListener("click", Restaurant.deleteRestaurant)
     
         h3.innerText = this.name
         h4.innerText = this.city
@@ -199,6 +199,24 @@ class Restaurant {
     
             Restaurant.renderRestaurants()
         })
+    }
+
+    static async deleteRestaurant(e) {
+        e.preventDefault()
+    
+        let id = e.target.dataset.id
+    
+        const resp = await fetch(baseUrl + '/restaurants/' + id, {
+            method: "DELETE"
+        })
+    
+        const data = await resp.json()
+        
+        Restaurant.all = Restaurant.all.filter(function(restaurant) {
+            return restaurant.id !== data.id
+        })
+        
+        Restaurant.renderRestaurants()
     }
 }
 

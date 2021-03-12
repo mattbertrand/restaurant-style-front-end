@@ -5,6 +5,8 @@ class Restaurant {
         this.id = data.id
         this.name = data.name
         this.city = data.city
+        this.image = data.image
+        this.url = data.url
         this.style = data.style
     }
 

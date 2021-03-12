@@ -61,6 +61,27 @@ class Restaurant {
            <div id="restaurants"></div>
         `
     }
+
+    static formTemplate() {
+        return `
+        <h3>Add A Restaurant</h3>
+            <form id="form">
+                <div class="input-field">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="input-field">
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city">
+                </div>
+                <div class="input-field">
+                    <label for="style">Style</label>
+                    <input type="text" name="style" id="style">
+                </div>
+                <input type="submit" value="Add Restaurant">
+            </form>
+        `
+    }
     
     static renderRestaurants() {
         resetMain()

@@ -66,7 +66,7 @@ function formTemplate() {
 function editFormTemplate(restaurant) {
     return `
     <h3>Edit Restaurant</h3>
-        <form id="form">
+        <form id="form" data-id="${restaurant.id}">
             <div class="input-field">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" value="${restaurant.name}">
@@ -158,7 +158,43 @@ function renderForm() {
 function renderEditForm(restaurant) {
     resetMain()
     main().innerHTML = editFormTemplate(restaurant)
-    // form().addEventListener("submit", submitForm)
+    form().addEventListener("submit", submitEditForm)
+}
+
+function submitEditForm(e) {
+    e.preventDefault()
+
+    let strongParams = {
+        restaurant: {
+            name: nameInput().value,
+            city: cityInput().value
+        }
+    }
+
+    const id = e.target.dataset.id
+    
+    fetch(baseUrl + '/restaurants/' + id, {
+        method: "PATCH",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(strongParams)
+    })
+    .then(function(resp) {
+        return resp.json()
+    })
+    .then(function(restaurant) {
+        let r = restaurants.find(function(r) {
+            return r.id == restaurant.id
+        })
+        
+        let idx = restaurants.indexOf(r)
+
+        restaurants[idx] = restaurant
+
+        renderRestaurants()
+    })
 }
 
 function renderRestaurants() {

@@ -25,7 +25,7 @@ class Restaurant {
         deleteLink.setAttribute("href", "#")
         deleteLink.innerText = "Delete"
     
-        editLink.addEventListener("click", editRestaurant)
+        editLink.addEventListener("click", Restaurant.editRestaurant)
         deleteLink.addEventListener("click", deleteRestaurant)
     
         h3.innerText = this.name
@@ -83,10 +83,37 @@ class Restaurant {
         `
     }
 
+    static editFormTemplate(restaurant) {
+        return `
+        <h3>Edit Restaurant</h3>
+            <form id="form" data-id="${restaurant.id}">
+                <div class="input-field">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" value="${restaurant.name}">
+                </div>
+                <div class="input-field">
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city" value="${restaurant.city}">
+                </div>
+                <div class="input-field">
+                    <label for="style">Style</label>
+                    <input type="text" name="style" id="style" value="${restaurant.style.title}">
+                </div>
+                <input type="submit" value="Edit Restaurant">
+            </form>
+        `
+    }
+
     static renderForm() {
         resetMain()
         main().innerHTML = Restaurant.formTemplate()
         form().addEventListener("submit", Restaurant.submitForm)
+    }
+
+    static renderEditForm(restaurant) {
+        resetMain()
+        main().innerHTML = Restaurant.editFormTemplate(restaurant)
+        form().addEventListener("submit", Restaurant.submitEditForm)
     }
     
     static renderRestaurants() {
@@ -94,6 +121,18 @@ class Restaurant {
         main().innerHTML = Restaurant.restaurantsTemplate()
     
         Restaurant.all.forEach(restaurant => restaurant.render())
+    }
+
+    static editRestaurant(e) {
+        e.preventDefault()
+    
+        const id = e.target.dataset.id
+    
+        const restaurant = Restaurant.all.find(function(restaurant) {
+            return restaurant.id == id
+        })
+    
+        Restaurant.renderEditForm(restaurant)
     }
 
     static submitForm(e) {
@@ -124,4 +163,42 @@ class Restaurant {
         })
     
     }
+
+    static submitEditForm(e) {
+        e.preventDefault()
+    
+        let strongParams = {
+            restaurant: {
+                name: nameInput().value,
+                city: cityInput().value, 
+                style_attributes: styleInput().value
+            }
+        }
+    
+        const id = e.target.dataset.id
+        
+        fetch(baseUrl + '/restaurants/' + id, {
+            method: "PATCH",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(strongParams)
+        })
+        .then(function(resp) {
+            return resp.json()
+        })
+        .then(function(data) {
+            let r = Restaurant.all.find(function(r) {
+                return r.id == data.id
+            })
+            
+            let idx = Restaurant.all.indexOf(r)
+    
+            Restaurant.all[idx] = new Restaurant(data)
+    
+            Restaurant.renderRestaurants()
+        })
+    }
 }
+

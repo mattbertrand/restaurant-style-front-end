@@ -16,27 +16,6 @@ function resetMain() {
     main().innerHTML = ""
 }
 
-function editFormTemplate(restaurant) {
-    return `
-    <h3>Edit Restaurant</h3>
-        <form id="form" data-id="${restaurant.id}">
-            <div class="input-field">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" value="${restaurant.name}">
-            </div>
-            <div class="input-field">
-                <label for="city">City</label>
-                <input type="text" name="city" id="city" value="${restaurant.city}">
-            </div>
-            <div class="input-field">
-                <label for="style">Style</label>
-                <input type="text" name="style" id="style" value="${restaurant.style.title}">
-            </div>
-            <input type="submit" value="Edit Restaurant">
-        </form>
-    `
-}
-
 async function deleteRestaurant(e) {
     e.preventDefault()
 
@@ -53,61 +32,6 @@ async function deleteRestaurant(e) {
     })
     
     Restaurant.renderRestaurants()
-}
-
-function editRestaurant(e) {
-    e.preventDefault()
-
-    const id = e.target.dataset.id
-
-    const restaurant = Restaurant.all.find(function(restaurant) {
-        return restaurant.id == id
-    })
-
-    renderEditForm(restaurant)
-}
-
-function renderEditForm(restaurant) {
-    resetMain()
-    main().innerHTML = editFormTemplate(restaurant)
-    form().addEventListener("submit", submitEditForm)
-}
-
-function submitEditForm(e) {
-    e.preventDefault()
-
-    let strongParams = {
-        restaurant: {
-            name: nameInput().value,
-            city: cityInput().value, 
-            style_attributes: styleInput().value
-        }
-    }
-
-    const id = e.target.dataset.id
-    
-    fetch(baseUrl + '/restaurants/' + id, {
-        method: "PATCH",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(strongParams)
-    })
-    .then(function(resp) {
-        return resp.json()
-    })
-    .then(function(restaurant) {
-        let r = Restaurant.all.find(function(r) {
-            return r.id == restaurant.id
-        })
-        
-        let idx = Restaurant.all.indexOf(r)
-
-        Restaurant.all[idx] = restaurant
-
-        Restaurant.renderRestaurants()
-    })
 }
 
 function formLinkEvent() {

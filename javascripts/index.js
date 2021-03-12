@@ -25,15 +25,13 @@ function restaurantsLink() {
     return document.getElementById("restaurants-link")
 }
 
-function getRestaurants() {
-    fetch(baseUrl + '/restaurants')
-    .then(function(resp) {
-        return resp.json()
-    })
-    .then(function(data) {
-        restaurants = data
-    })
+async function getRestaurants() {
 
+    const resp = await fetch(baseUrl + '/restaurants')
+    const data = await resp.json()
+    
+    restaurants = data
+    
     renderRestaurants()
 }
 
@@ -117,24 +115,22 @@ function renderRestaurant(restaurant) {
     restaurantsDiv.appendChild(div)
 }
 
-function deleteRestaurant(e) {
+async function deleteRestaurant(e) {
     e.preventDefault()
 
     let id = e.target.dataset.id
 
-    fetch(baseUrl + '/restaurants/' + id, {
+    const resp = await fetch(baseUrl + '/restaurants/' + id, {
         method: "DELETE"
     })
-    .then(function(resp) {
-        return resp.json()
+
+    const data = await resp.json()
+    
+    restaurants = restaurants.filter(function(restaurant) {
+        return restaurant.id !== data.id
     })
-    .then(function(data) {
-        
-        restaurants = restaurants.filter(function(restaurant) {
-            return restaurant.id !== data.id
-        })
-        renderRestaurants()
-    })
+    
+    renderRestaurants()
 }
 
 function editRestaurant(e) {

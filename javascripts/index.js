@@ -63,6 +63,23 @@ function formTemplate() {
     `
 }
 
+function editFormTemplate(restaurant) {
+    return `
+    <h3>Edit Restaurant</h3>
+        <form id="form">
+            <div class="input-field">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" value="${restaurant.name}">
+            </div>
+            <div class="input-field">
+                <label for="city">City</label>
+                <input type="text" name="city" id="city" value="${restaurant.city}">
+            </div>
+            <input type="submit" value="Edit Restaurant">
+        </form>
+    `
+}
+
 function restaurantsTemplate() {
     return `
     <h3>List of Restaurants</h3>
@@ -86,6 +103,7 @@ function renderRestaurant(restaurant) {
     deleteLink.setAttribute("href", "#")
     deleteLink.innerText = "Delete"
 
+    editLink.addEventListener("click", editRestaurant)
     deleteLink.addEventListener("click", deleteRestaurant)
 
     h3.innerText = restaurant.name
@@ -117,7 +135,6 @@ function deleteRestaurant(e) {
         })
         renderRestaurants()
     })
-
 }
 
 function renderForm() {

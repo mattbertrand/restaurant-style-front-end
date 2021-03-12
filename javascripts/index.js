@@ -74,8 +74,13 @@ function renderRestaurant(restaurant) {
     let div = document.createElement("div")
     let h3 = document.createElement("h3")
     let h4 = document.createElement("h4")
+    let editLink = document.createElement("a")
     let deleteLink = document.createElement("a")
     let restaurantsDiv = document.getElementById("restaurants")
+    
+    editLink.dataset.id = restaurant.id
+    editLink.setAttribute("href", "#")
+    editLink.innerText = "Edit"
     
     deleteLink.dataset.id = restaurant.id
     deleteLink.setAttribute("href", "#")
@@ -88,6 +93,7 @@ function renderRestaurant(restaurant) {
 
     div.appendChild(h3)
     div.appendChild(h4)
+    div.appendChild(editLink)
     div.appendChild(deleteLink)
 
     restaurantsDiv.appendChild(div)

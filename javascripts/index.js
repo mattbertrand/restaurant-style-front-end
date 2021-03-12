@@ -103,12 +103,29 @@ function renderRestaurants() {
 function submitForm(e) {
     e.preventDefault()
 
-    restaurants.push({
-        name: nameInput().value,
-        city: cityInput().value
+    let strongParams = {
+        restaurant: {
+            name: nameInput().value,
+            city: cityInput().value
+        }
+    }
+
+    fetch(baseUrl + '/restaurants', {
+        body: JSON.stringify(strongParams),
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        method: "POST"
+    })
+    .then(function(resp) {
+        return resp.json()
+    })
+    .then(function(restaurant) {
+        restaurants.push(restaurant)
+        renderRestaurants()
     })
 
-    renderRestaurants()
 }
 
 function formLinkEvent() {
@@ -129,8 +146,6 @@ function restaurantsLinkEvent() {
 
 document.addEventListener('DOMContentLoaded', function() {
     getRestaurants()
-    renderForm()
     formLinkEvent()
     restaurantsLinkEvent()
-    // renderRestaurants()
 })

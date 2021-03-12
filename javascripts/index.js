@@ -137,10 +137,28 @@ function deleteRestaurant(e) {
     })
 }
 
+function editRestaurant(e) {
+    e.preventDefault()
+
+    const id = e.target.dataset.id
+
+    const restaurant = restaurants.find(function(restaurant) {
+        return restaurant.id == id
+    })
+
+    renderEditForm(restaurant)
+}
+
 function renderForm() {
     resetMain()
     main().innerHTML = formTemplate()
     form().addEventListener("submit", submitForm)
+}
+
+function renderEditForm(restaurant) {
+    resetMain()
+    main().innerHTML = editFormTemplate(restaurant)
+    // form().addEventListener("submit", submitForm)
 }
 
 function renderRestaurants() {

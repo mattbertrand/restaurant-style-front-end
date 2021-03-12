@@ -89,6 +89,14 @@ class Restaurant {
                     <input type="text" name="city" id="city">
                 </div>
                 <div class="input-field">
+                    <label for="image">Image URL</label>
+                    <input type="text" name="image" id="image">
+                </div>
+                <div class="input-field">
+                    <label for="url">Restaurant Website</label>
+                    <input type="text" name="url" id="url">
+                </div>
+                <div class="input-field">
                     <label for="style">Style</label>
                     <input type="text" name="style" id="style">
                 </div>

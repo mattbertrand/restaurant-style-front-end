@@ -74,13 +74,19 @@ function renderRestaurant(restaurant) {
     let div = document.createElement("div")
     let h3 = document.createElement("h3")
     let h4 = document.createElement("h4")
+    let deleteLink = document.createElement("a")
     let restaurantsDiv = document.getElementById("restaurants")
+    
+    deleteLink.dataset.id = restaurant.id
+    deleteLink.setAttribute("href", "#")
+    deleteLink.innerText = "Delete"
 
     h3.innerText = restaurant.name
     h4.innerText = restaurant.city
 
     div.appendChild(h3)
     div.appendChild(h4)
+    div.appendChild(deleteLink)
 
     restaurantsDiv.appendChild(div)
 }

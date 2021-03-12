@@ -110,35 +110,6 @@ function submitEditForm(e) {
     })
 }
 
-function submitForm(e) {
-    e.preventDefault()
-
-    let strongParams = {
-        restaurant: {
-            name: nameInput().value,
-            city: cityInput().value,
-            style_attributes: styleInput().value
-        }
-    }
-
-    fetch(baseUrl + '/restaurants', {
-        body: JSON.stringify(strongParams),
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        method: "POST"
-    })
-    .then(function(resp) {
-        return resp.json()
-    })
-    .then(function(restaurant) {
-        Restaurant.all.push(restaurant)
-        Restaurant.renderRestaurants()
-    })
-
-}
-
 function formLinkEvent() {
     formLink().addEventListener("click", function(e) {
         e.preventDefault()

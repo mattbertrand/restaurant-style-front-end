@@ -86,7 +86,7 @@ class Restaurant {
     static renderForm() {
         resetMain()
         main().innerHTML = Restaurant.formTemplate()
-        form().addEventListener("submit", submitForm)
+        form().addEventListener("submit", Restaurant.submitForm)
     }
     
     static renderRestaurants() {
@@ -94,5 +94,34 @@ class Restaurant {
         main().innerHTML = Restaurant.restaurantsTemplate()
     
         Restaurant.all.forEach(restaurant => restaurant.render())
+    }
+
+    static submitForm(e) {
+        e.preventDefault()
+    
+        let strongParams = {
+            restaurant: {
+                name: nameInput().value,
+                city: cityInput().value,
+                style_attributes: styleInput().value
+            }
+        }
+    
+        fetch(baseUrl + '/restaurants', {
+            body: JSON.stringify(strongParams),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            method: "POST"
+        })
+        .then(function(resp) {
+            return resp.json()
+        })
+        .then(function(data) {
+            Restaurant.create(data)
+            Restaurant.renderRestaurants()
+        })
+    
     }
 }

@@ -13,6 +13,10 @@ function cityInput() {
     return document.getElementById("city")
 }
 
+function styleInput() {
+    document.getElementById("style")
+}
+
 function form() {
     return document.getElementById("form")
 }

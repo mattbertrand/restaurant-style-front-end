@@ -172,6 +172,8 @@ class Restaurant {
             restaurant: {
                 name: nameInput().value,
                 city: cityInput().value,
+                image: imageInput.value,
+                url: urlInput.value,
                 style_attributes: styleInput().value
             }
         }
@@ -189,7 +191,9 @@ class Restaurant {
         let strongParams = {
             restaurant: {
                 name: nameInput().value,
-                city: cityInput().value, 
+                city: cityInput().value,
+                image: imageInput.value,
+                url: urlInput.value,
                 style_attributes: styleInput().value
             }
         }

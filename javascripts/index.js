@@ -67,12 +67,6 @@ function editRestaurant(e) {
     renderEditForm(restaurant)
 }
 
-function renderForm() {
-    resetMain()
-    main().innerHTML = Restaurant.formTemplate()
-    form().addEventListener("submit", submitForm)
-}
-
 function renderEditForm(restaurant) {
     resetMain()
     main().innerHTML = editFormTemplate(restaurant)
@@ -149,7 +143,7 @@ function formLinkEvent() {
     formLink().addEventListener("click", function(e) {
         e.preventDefault()
 
-        renderForm()
+        Restaurant.renderForm()
     })
 }
 

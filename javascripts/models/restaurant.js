@@ -82,6 +82,12 @@ class Restaurant {
             </form>
         `
     }
+
+    static renderForm() {
+        resetMain()
+        main().innerHTML = Restaurant.formTemplate()
+        form().addEventListener("submit", submitForm)
+    }
     
     static renderRestaurants() {
         resetMain()

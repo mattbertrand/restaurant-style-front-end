@@ -2,8 +2,9 @@ function resetInputs() {
     nameInput().innerHTML = ""
     cityInput().innerHTML = ""
     imageInput().value = ""
-    urlInput.value = ""
-    styleInput.value = ""
+    debugger
+    urlInput().value = ""
+    styleInput().value = ""
 }
 
 function resetMain() {

@@ -38,10 +38,10 @@ class Restaurant {
         editLink.addEventListener("click", Restaurant.editRestaurant)
         deleteLink.addEventListener("click", Restaurant.deleteRestaurant)
     
-        h3.innerText = this.name
-        h4.innerText = this.city
-        pImage.innerText = this.image
-        pUrl.innerText = this.url
+        h3.innerText = `${this.name}`
+        h4.innerText = `${this.city}`
+        pImage.innerText = `${this.image}`
+        pUrl.innerText = `${this.url}`
         showStyle.innerText = `Style: ${this.style.title}`
     
         div.appendChild(h3)
@@ -172,8 +172,8 @@ class Restaurant {
             restaurant: {
                 name: nameInput().value,
                 city: cityInput().value,
-                image: imageInput.value,
-                url: urlInput.value,
+                image: imageInput().value,
+                url: urlInput().value,
                 style_attributes: styleInput().value
             }
         }
@@ -192,8 +192,8 @@ class Restaurant {
             restaurant: {
                 name: nameInput().value,
                 city: cityInput().value,
-                image: imageInput.value,
-                url: urlInput.value,
+                image: imageInput().value,
+                url: urlInput().value,
                 style_attributes: styleInput().value
             }
         }

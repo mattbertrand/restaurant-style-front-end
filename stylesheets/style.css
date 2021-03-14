@@ -1,3 +1,17 @@
 .body {
-    background-color: #8db0e7;
+    background-color: #74ac40;
 }
+
+.container {
+    text-align: center;
+}
+
+.restaurant-card {
+    width: 30rem;
+    padding: 2em;
+    margin: 0 auto;
+    background-color: #eebd69;
+    margin-top: 1em;
+    background: hsl(170, 61%, 60%);
+}
+

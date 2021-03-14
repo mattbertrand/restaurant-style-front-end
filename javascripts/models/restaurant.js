@@ -14,7 +14,8 @@ class Restaurant {
         let div = document.createElement("div")
         let h3 = document.createElement("h3")
         let h4 = document.createElement("h4")
-        let showStyle = document.createElement('p')
+        let showStyle = document.createElement('h2')
+        let cardBody = document.createElement('div')
         
         let pImage = document.createElement('img')
         pImage.src = this.image
@@ -43,6 +44,8 @@ class Restaurant {
         pImage.innerText = `${this.image}`
         pUrl.innerText = `${this.url}`
         showStyle.innerText = `Style: ${this.style.title}`
+
+        div.className = "restaurant-card"
     
         div.appendChild(h3)
         div.appendChild(h4)
@@ -51,7 +54,8 @@ class Restaurant {
         div.appendChild(showStyle)
         div.appendChild(editLink)
         div.appendChild(deleteLink)
-    
+        
+        cardBody.appendChild(div)
         restaurantsDiv.appendChild(div)
     }
 
@@ -71,14 +75,14 @@ class Restaurant {
 
     static restaurantsTemplate() {
         return `
-        <h3>List of Restaurants</h3>
+        <h2>List of Restaurants</h2>
            <div id="restaurants"></div>
         `
     }
 
     static formTemplate() {
         return `
-        <h3>Add A Restaurant</h3>
+        <h2>Add A Restaurant</h2>
             <form id="form">
                 <div class="input-field">
                     <label for="name">Name</label>

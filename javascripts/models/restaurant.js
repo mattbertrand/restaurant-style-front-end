@@ -238,4 +238,3 @@ class Restaurant {
         Restaurant.renderRestaurants()
     }
 }
-

@@ -86,23 +86,23 @@ class Restaurant {
             <form id="form">
                 <div class="input-field">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name">
+                    <input type="text" name="name" id="name" required>
                 </div>
                 <div class="input-field">
                     <label for="city">City</label>
-                    <input type="text" name="city" id="city">
+                    <input type="text" name="city" id="city" required>
                 </div>
                 <div class="input-field">
                     <label for="image">Image URL</label>
-                    <input type="text" name="image" id="image">
+                    <input type="text" name="image" id="image" required>
                 </div>
                 <div class="input-field">
                     <label for="url">Restaurant Website</label>
-                    <input type="text" name="url" id="url">
+                    <input type="text" name="url" id="url" required>
                 </div>
                 <div class="input-field">
                     <label for="style">Style</label>
-                    <input type="text" name="style" id="style">
+                    <input type="text" name="style" id="style" required>
                 </div>
                 <input type="submit" value="Add Restaurant">
             </form>
@@ -115,23 +115,23 @@ class Restaurant {
             <form id="form" data-id="${restaurant.id}">
                 <div class="input-field">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name" value="${restaurant.name}">
+                    <input type="text" name="name" id="name" value="${restaurant.name}" required>
                 </div>
                 <div class="input-field">
                     <label for="city">City</label>
-                    <input type="text" name="city" id="city" value="${restaurant.city}">
+                    <input type="text" name="city" id="city" value="${restaurant.city}" required>
                 </div>
                 <div class="input-field">
                     <label for="image">Image URL</label>
-                    <input type="text" name="image" id="image" value="${restaurant.image}">
+                    <input type="text" name="image" id="image" value="${restaurant.image}" required>
                 </div>
                 <div class="input-field">
                     <label for="url">Restaurant Website</label>
-                    <input type="text" name="url" id="url" value="${restaurant.url}">
+                    <input type="text" name="url" id="url" value="${restaurant.url}" required>
                 </div>
                 <div class="input-field">
                     <label for="style">Style</label>
-                    <input type="text" name="style" id="style" value="${restaurant.style.title}">
+                    <input type="text" name="style" id="style" value="${restaurant.style.title}" required>
                 </div>
                 <input type="submit" value="Edit Restaurant">
             </form>

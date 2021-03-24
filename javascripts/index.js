@@ -26,8 +26,17 @@ function restaurantsLinkEvent() {
     })
 }
 
+function searchByStyleEvent() {
+    searchByStyle().addEventListener("keyup", function(e) {
+        e.preventDefault()
+
+        Restaurant.handleSearch()
+    })
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     Restaurant.getRestaurants()
     formLinkEvent()
     restaurantsLinkEvent()
+    searchByStyleEvent()
 })

@@ -149,6 +149,17 @@ class Restaurant {
         main().innerHTML = Restaurant.editFormTemplate(restaurant)
         form().addEventListener("submit", Restaurant.submitEditForm)
     }
+
+    static handleSearch() {
+        let inputValue = event.target.value.toLowerCase()
+        let searchResult = Restaurant.all.filter(r => {
+            return r.style.title.toLowerCase().includes(inputValue)
+        })
+        restaurantsDiv().innerHTML = ""
+        searchResult.forEach(r => {
+            r.render()
+        })
+    }
     
     static renderRestaurants() {
         resetMain()
